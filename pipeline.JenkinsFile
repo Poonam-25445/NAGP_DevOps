@@ -1,0 +1,55 @@
+pipeline {
+
+    agent {
+        label 'saltmarsh-wip'
+    }
+    
+    environment{
+       HOME = "."
+    }
+	
+	options{
+         skipDefaultCheckout()
+         copyArtifactPermission('*')
+         buildDiscarder(logRotator(daysToKeepStr: '', numToKeepStr: '10'))
+         timeout(time: 180, unit: 'MINUTES')
+    }
+
+    stages {
+
+        //Checkout repo
+        stage('Checkout Public repo') {
+            steps {
+				cleanWs()
+                checkout([
+                    changelog: false,
+                    poll: false,
+                    git branch: 'main', url: 'https://github.com/Poonam-25445/NAGP_DevOps.git'
+                ])
+            }
+        }
+		
+		stage('Install Dependencies') {
+            steps {
+                // Assuming you are using Maven for the Selenium framework
+                // If using a different package manager, modify the command accordingly
+                sh 'mvn clean install -DskipTests'
+            }
+        }
+
+		stage('Run Selenium Tests') {
+            steps {
+                // Assuming you have a test runner to execute the tests
+                // Replace 'your-test-runner-command' with the actual command to run the tests
+                sh 'your-test-runner-command'
+            }
+        }
+    }
+    post {
+        always {
+            script {
+               
+            }
+        }
+    }
+}
