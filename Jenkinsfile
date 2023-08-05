@@ -21,6 +21,22 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Poonam-25445/NAGP_DevOps.git'
             }
          }
+         
+        stage('SonarQube analysis') {
+            steps {
+              withSonarQubeEnv('SonarQube') {
+                bat 'mvn clean package -DskipTests sonar:sonar'
+              }
+            }
+        }
+        
+        stage("Quality Gate") {
+            steps {
+              timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
+              }
+            }
+          }
             
         stage('Build') {
             steps {
