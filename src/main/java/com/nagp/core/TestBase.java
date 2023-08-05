@@ -28,8 +28,8 @@ import com.nagp.util.CommonUtil;
  */
 public class TestBase {
 	protected CommonUtil util;
-	public static String browser_Value = null;
-	public static String platform_Value = null;
+	public static String browserValue = null;
+	public static String platformValue = null;
 	protected DriverOptions driverOptions;
 
 	static {
@@ -104,8 +104,8 @@ public class TestBase {
 	protected void beforeMethod(String webdriverHost, int webdriverPort, String browser, String platform,
 			Method method) {
 		try {
-			browser_Value = browser;
-			platform_Value = platform;
+			browserValue = browser;
+			platformValue = platform;
 			LoggingManager.getConsoleLogger().info(" : TestBase - BeforeMethod called : " + method.getName());
 			LoggingManager.getConsoleLogger().info(" : Browser called -> " + browser);
 			setDriverOptions(webdriverHost, webdriverPort, browser, platform);

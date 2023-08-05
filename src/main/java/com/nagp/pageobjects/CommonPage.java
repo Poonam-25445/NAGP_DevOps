@@ -14,6 +14,7 @@ public class CommonPage {
 		throw new UnsupportedOperationException("Cannot instantiate utility class");
 	}
 	private static final String PAGENAME = "Common";	
+	private static final String USER_INFO = "UserInfo";
 	
 	public static final String MY_ACCOUNT = "My Account";
 	public static final String MY_WISH_LIST = "My Wish List";
@@ -57,7 +58,7 @@ public class CommonPage {
 	 * @return true/false
 	 */
 	public static boolean verifyDropDownValuesInUserMenu(List<String> linkListForAccessDeniedPage) {
-		By userInfo = MKeywords.findElement(PAGENAME, "UserInfo");
+		By userInfo = MKeywords.findElement(PAGENAME, USER_INFO);
 		SeKeywords.waitForElementToBeClickable(userInfo, 15);
 		List<String> displayedList = MKeywords.getDropdownValues(userInfo,
 				MKeywords.findElement(PAGENAME, "WelcomeList"));
@@ -70,7 +71,7 @@ public class CommonPage {
 	 * Click welcome list.
 	 */
 	public static void clickUserInfo(){
-		SeKeywords.click(MKeywords.findElement(PAGENAME, "UserInfo"));
+		SeKeywords.click(MKeywords.findElement(PAGENAME, USER_INFO));
 	}
 	
 	/**
@@ -79,7 +80,7 @@ public class CommonPage {
 	 * @param value		value user wants to select.
 	 */
 	public static void selectWelcomeListOption(String value){
-		By userInfo = MKeywords.findElement("Common", "UserInfo");
+		By userInfo = MKeywords.findElement("Common", USER_INFO);
 		SeKeywords.waitForStalenessOfElement(userInfo, 30);  
 		MKeywords.selectDropdownValue(userInfo, MKeywords.findElement("Common", "WelcomeList"), value);
 	}

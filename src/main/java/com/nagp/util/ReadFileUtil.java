@@ -41,7 +41,7 @@ public class ReadFileUtil {
 	/**
 	 * Instantiates a new data source operations.
 	 */
-	public ReadFileUtil() {
+	private ReadFileUtil() {
 		log.info(" : FileOperation Constructor Called");
 	}
 	

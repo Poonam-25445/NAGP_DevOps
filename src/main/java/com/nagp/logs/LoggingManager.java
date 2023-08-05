@@ -180,7 +180,7 @@ public class LoggingManager {
 				if (Config.screenshotOnFailure.equalsIgnoreCase("true")) {
 					String screenShotPath = CommonUtil.captureScreenshot(DriverFactory.getDriver(),"Failure", result);
 					getReportLogger().fail("Snapshot below: "+ getReportLogger().addScreenCaptureFromPath(screenShotPath));
-					getConsoleLogger().info("This test method " + result.getName() + " failed on browser ->" + TestBase.browser_Value);
+					getConsoleLogger().info("This test method " + result.getName() + " failed on browser ->" + TestBase.browserValue);
 				}
 			} else if (result.getStatus() == ITestResult.SKIP) {
 				getConsoleLogger().info("Test case SKIPPED");

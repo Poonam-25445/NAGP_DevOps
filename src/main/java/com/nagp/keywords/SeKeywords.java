@@ -26,14 +26,15 @@ public class SeKeywords {
 		throw new UnsupportedOperationException("Cannot instantiate utility class");
 	}
 
-	public static final boolean IS_IE_BROWSER = TestBase.browser_Value.equalsIgnoreCase(DriverFactory.INTERNET_EXPLORER);
-	public static final boolean IS_FIREFOX_BROWSER = TestBase.browser_Value.equalsIgnoreCase(DriverFactory.FIREFOX);
+	public static final boolean IS_IE_BROWSER = TestBase.browserValue.equalsIgnoreCase(DriverFactory.INTERNET_EXPLORER);
+	public static final boolean IS_FIREFOX_BROWSER = TestBase.browserValue.equalsIgnoreCase(DriverFactory.FIREFOX);
 	
 	public static final String ELEMENT_NOT_FOUND = "Element not found: ";
 	public static final String NO_SUCH_ELEMENT_FOUND = "No Such Element Found";
 	public static final String NOT_FOUND = " not found. ";
 	public static final String TIMEOUT = "TimeOut. ";
 	public static final String TIMEOUT_ELEMENT_NOT_FOUND= "Timeout. Element not found." ;
+	public static final String IS_NOT_VERIFIED = " is not verified." ;
 
 	/**
 	 * This method waits for visibility of the element present on web page for specified time.
@@ -681,12 +682,12 @@ public class SeKeywords {
 			LoggingManager.getReportLogger().log(Status.PASS, "page title " +pageTitle + " is verified." + "\"");
 			LoggingManager.getConsoleLogger().info("page title " +pageTitle + " is verified." + "\"");
 		}catch (TimeoutException e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + TIMEOUT + "page title " +pageTitle + " is not verified." + "\"");
-			LoggingManager.getConsoleLogger().error("Timeout. page title " +pageTitle + " is not verified." + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + TIMEOUT + "page title " +pageTitle + IS_NOT_VERIFIED+ "\"");
+			LoggingManager.getConsoleLogger().error("Timeout. page title " +pageTitle + IS_NOT_VERIFIED+ e);
 			throw(e);
 		}catch (Exception e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "page title " +pageTitle + " is not verified." + "\"");
-			LoggingManager.getConsoleLogger().error("Page title " +pageTitle + " is not verified." + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "page title " +pageTitle + IS_NOT_VERIFIED+ "\"");
+			LoggingManager.getConsoleLogger().error("Page title " +pageTitle + IS_NOT_VERIFIED+ e);
 			throw(e);
 		}
 	}

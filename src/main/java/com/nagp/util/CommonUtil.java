@@ -300,7 +300,7 @@ public class CommonUtil {
 	 */
 	public static String getFullPathBasedOnPlatformType(String path){
 		path = path.replace("."+ File.separator, File.separator);  
-		if (!TestBase.platform_Value.equalsIgnoreCase(Platform.LINUX.toString())) {
+		if (!TestBase.platformValue.equalsIgnoreCase(Platform.LINUX.toString())) {
 			path = System.getProperty("user.dir") + path;
 		}
 	    return path;  
