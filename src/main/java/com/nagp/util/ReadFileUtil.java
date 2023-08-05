@@ -32,17 +32,18 @@ import org.xml.sax.SAXException;
  */
 public class ReadFileUtil {
 
-	public static final String PATH = null;
-	public static final FileInputStream FIS = null;
-	public static final FileOutputStream FILEOUT = null;
+	public static final String Path = null;
+	public static final FileInputStream fis = null;
+	public static final FileOutputStream fileOut = null;
 	public static final HyperlinkType FILE = null;
 
-	public static final Logger LOG = Logger.getLogger(ReadFileUtil.class);
+	private static Logger log = Logger.getLogger(ReadFileUtil.class);
 
 	/**
 	 * Instantiates a new data source operations.
 	 */
-	private ReadFileUtil() {
+	public ReadFileUtil() {
+		log.info(" : FileOperation Constructor Called");
 	}
 	
 
@@ -135,15 +136,15 @@ public class ReadFileUtil {
 				}
 			}
 		} catch (FileNotFoundException ex) {
-			LOG.error(ex.getMessage());
+			log.error(ex.getMessage());
 		} catch (IOException ex) {
-			LOG.error(ex.getMessage());
+			log.error(ex.getMessage());
 		} finally {
 			if (br != null) {
 				try {
 					br.close();
 				} catch (IOException ex) {
-					LOG.error(ex.getMessage());
+					log.error(ex.getMessage());
 				}
 			}
 		}
