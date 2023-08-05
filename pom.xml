@@ -86,7 +86,7 @@
 				<configuration>
 					<suiteXmlFiles>
 						<!-- TestNG suite XML files -->
-						<suiteXmlFile xmlns="">testngChrome.xml</suiteXmlFile>
+						<suiteXmlFile xmlns="">testng.xml</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>

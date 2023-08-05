@@ -2,7 +2,7 @@
 <!-- Do not include the "DOCTYPE" tag as the grammar does not let you use beanshell script -->
 <suite name="Suite" thread-count="8" data-provider-thread-count="1" parallel="classes">
 	<listeners>
-		<listener class-name="com.nagarro.nagp.listeners.TestNGListeners" />
+		<listener class-name="com.nagp.listeners.TestNGListeners" />
 	</listeners>
 	<test name="UIAutomationTestCase">
 		<parameter name="browser" value="chrome"></parameter>
@@ -23,11 +23,9 @@
 			</method-selector>
 		</method-selectors>
 		<classes>
-			<class name="com.nagarro.nagp.VerifySearchItemFunctionality" />
-			<class name="com.nagarro.nagp.VerifyCart" />
-			<class name="com.nagarro.nagp.VerifyNewCustomerFunctionality" />
-			<class name="com.nagarro.nagp.VerifyLoginFunctionality" />
-			<class name="com.nagarro.nagp.VerifyAddressFunctionality" />
+			<class name="com.nagp.VerifySearchItemFunctionality" />
+			<class name="com.nagp.VerifyNewCustomerFunctionality" />
+			<class name="com.nagp.VerifyLoginFunctionality" />
 		</classes>
 
 	</test>

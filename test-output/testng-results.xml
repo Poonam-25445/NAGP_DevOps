@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="12" total="16" passed="3" failed="1" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2023-08-05T21:54:40 IST" name="Suite" finished-at="2023-08-05T21:55:15 IST" duration-ms="34657">
+    <groups>
+      <group name="Search">
+        <method signature="VerifySearchItemFunctionality.testSearchItem(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.nagp.VerifySearchItemFunctionality@4ef74c30]" name="testSearchItem" class="com.nagp.VerifySearchItemFunctionality"/>
+      </group> <!-- Search -->
+      <group name="Critical">
+        <method signature="VerifyCart.testCart(java.lang.String)[pri:0, instance:com.nagp.VerifyCart@18ece7f4]" name="testCart" class="com.nagp.VerifyCart"/>
+        <method signature="VerifyNewCustomerFunctionality.testNewCustomerAccount(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.nagp.VerifyNewCustomerFunctionality@3cce57c7]" name="testNewCustomerAccount" class="com.nagp.VerifyNewCustomerFunctionality"/>
+        <method signature="VerifySearchItemFunctionality.testSearchItem(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.nagp.VerifySearchItemFunctionality@4ef74c30]" name="testSearchItem" class="com.nagp.VerifySearchItemFunctionality"/>
+      </group> <!-- Critical -->
+      <group name="Login">
+        <method signature="VerifyLoginFunctionality.testSuccessfulLogin(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.nagp.VerifyLoginFunctionality@4c5ae43b]" name="testSuccessfulLogin" class="com.nagp.VerifyLoginFunctionality"/>
+      </group> <!-- Login -->
+      <group name="Smoke">
+        <method signature="VerifyLoginFunctionality.testSuccessfulLogin(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.nagp.VerifyLoginFunctionality@4c5ae43b]" name="testSuccessfulLogin" class="com.nagp.VerifyLoginFunctionality"/>
+      </group> <!-- Smoke -->
+      <group name="NewCustomer">
+        <method signature="VerifyNewCustomerFunctionality.testNewCustomerAccount(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.nagp.VerifyNewCustomerFunctionality@3cce57c7]" name="testNewCustomerAccount" class="com.nagp.VerifyNewCustomerFunctionality"/>
+      </group> <!-- NewCustomer -->
+      <group name="Cart">
+        <method signature="VerifyCart.testCart(java.lang.String)[pri:0, instance:com.nagp.VerifyCart@18ece7f4]" name="testCart" class="com.nagp.VerifyCart"/>
+      </group> <!-- Cart -->
+    </groups>
+    <test started-at="2023-08-05T21:54:40 IST" name="UIAutomationTestCase" finished-at="2023-08-05T21:55:15 IST" duration-ms="34657">
+      <class name="com.nagp.VerifyCart">
+        <test-method is-config="true" signature="BeforeClass()[pri:0, instance:com.nagp.VerifyCart@18ece7f4]" started-at="2023-08-05T21:54:40 IST" name="BeforeClass" finished-at="2023-08-05T21:54:40 IST" duration-ms="8" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- BeforeClass -->
+        <test-method is-config="true" signature="BeforeMethod(java.lang.String,int,java.lang.String,java.lang.String,java.lang.reflect.Method)[pri:0, instance:com.nagp.VerifyCart@18ece7f4]" started-at="2023-08-05T21:54:40 IST" name="BeforeMethod" finished-at="2023-08-05T21:54:48 IST" duration-ms="7179" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[LOCALHOST]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[4444]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[WINDOWS]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[public void com.nagp.VerifyCart.testCart(java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- BeforeMethod -->
+        <test-method signature="testCart(java.lang.String)[pri:0, instance:com.nagp.VerifyCart@18ece7f4]" started-at="2023-08-05T21:54:48 IST" name="testCart" data-provider="TestData" finished-at="2023-08-05T21:55:00 IST" duration-ms="12413" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[You have no items in your shopping cart.]]>
+              </value>
+            </param>
+          </params>
+          <exception class="org.openqa.selenium.ElementNotInteractableException">
+            <message>
+              <![CDATA[element not interactable: [object HTMLElement] has no size and location
+  (Session info: chrome=115.0.5790.111)
+Build info: version: '4.8.3', revision: 'e5e76298c3'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.5'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [e9fad43829086a3e7d83897c39711b3f, actions {actions=[org.openqa.selenium.interactions.Sequence@5fa66cd1]}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 115.0.5790.111, chrome: {chromedriverVersion: 114.0.5735.90 (386bc09e8f4f..., userDataDir: C:\Windows\SystemTemp\scope...}, goog:chromeOptions: {debuggerAddress: localhost:62312}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:62312/devtoo..., se:cdpVersion: 115.0.5790.111, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: e9fad43829086a3e7d83897c39711b3f]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.ElementNotInteractableException: element not interactable: [object HTMLElement] has no size and location
+  (Session info: chrome=115.0.5790.111)
+Build info: version: '4.8.3', revision: 'e5e76298c3'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.5'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [e9fad43829086a3e7d83897c39711b3f, actions {actions=[org.openqa.selenium.interactions.Sequence@5fa66cd1]}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 115.0.5790.111, chrome: {chromedriverVersion: 114.0.5735.90 (386bc09e8f4f..., userDataDir: C:\Windows\SystemTemp\scope...}, goog:chromeOptions: {debuggerAddress: localhost:62312}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:62312/devtoo..., se:cdpVersion: 115.0.5790.111, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: e9fad43829086a3e7d83897c39711b3f
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:193)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:183)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:158)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
+at org.openqa.selenium.remote.RemoteWebDriver.perform(RemoteWebDriver.java:611)
+at org.openqa.selenium.interactions.Actions$BuiltAction.perform(Actions.java:567)
+at org.openqa.selenium.interactions.Actions.perform(Actions.java:536)
+at com.nagp.keywords.SeKeywords.moveToElement(SeKeywords.java:129)
+at com.nagp.keywords.SeKeywords.getText(SeKeywords.java:159)
+at com.nagp.pageObjects.HomePage.getCartMessage(HomePage.java:94)
+at com.nagp.VerifyCart.testCart(VerifyCart.java:34)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+at java.base/java.lang.Thread.run(Thread.java:834)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.ElementNotInteractableException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCart -->
+        <test-method is-config="true" signature="AfterMethod(org.testng.ITestResult)[pri:0, instance:com.nagp.VerifyCart@18ece7f4]" started-at="2023-08-05T21:55:00 IST" name="AfterMethod" finished-at="2023-08-05T21:55:01 IST" duration-ms="722" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=testCart status=FAILURE method=VerifyCart.testCart(java.lang.String)[pri:0, instance:com.nagp.VerifyCart@18ece7f4] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AfterMethod -->
+        <test-method is-config="true" signature="AfterClass()[pri:0, instance:com.nagp.VerifyCart@18ece7f4]" started-at="2023-08-05T21:55:01 IST" name="AfterClass" finished-at="2023-08-05T21:55:01 IST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AfterClass -->
+      </class> <!-- com.nagp.VerifyCart -->
+      <class name="com.nagp.VerifySearchItemFunctionality">
+        <test-method is-config="true" signature="BeforeSuite()[pri:0, instance:com.nagp.VerifySearchItemFunctionality@4ef74c30]" started-at="2023-08-05T21:54:40 IST" name="BeforeSuite" finished-at="2023-08-05T21:54:40 IST" duration-ms="179" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- BeforeSuite -->
+        <test-method is-config="true" signature="BeforeTest()[pri:0, instance:com.nagp.VerifySearchItemFunctionality@4ef74c30]" started-at="2023-08-05T21:54:40 IST" name="BeforeTest" finished-at="2023-08-05T21:54:40 IST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- BeforeTest -->
+        <test-method is-config="true" signature="BeforeClass()[pri:0, instance:com.nagp.VerifySearchItemFunctionality@4ef74c30]" started-at="2023-08-05T21:54:40 IST" name="BeforeClass" finished-at="2023-08-05T21:54:40 IST" duration-ms="8" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- BeforeClass -->
+        <test-method is-config="true" signature="BeforeMethod(java.lang.String,int,java.lang.String,java.lang.String,java.lang.reflect.Method)[pri:0, instance:com.nagp.VerifySearchItemFunctionality@4ef74c30]" started-at="2023-08-05T21:54:40 IST" name="BeforeMethod" finished-at="2023-08-05T21:54:48 IST" duration-ms="7458" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[LOCALHOST]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[4444]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[WINDOWS]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[public void com.nagp.VerifySearchItemFunctionality.testSearchItem(java.lang.String,java.lang.String,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- BeforeMethod -->
+        <test-method signature="testSearchItem(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.nagp.VerifySearchItemFunctionality@4ef74c30]" started-at="2023-08-05T21:54:48 IST" name="testSearchItem" data-provider="TestData" finished-at="2023-08-05T21:55:14 IST" duration-ms="26397" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[New Luma Yoga Collection]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Troy yoga short]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Search results for: 'Troy yoga short']]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSearchItem -->
+        <test-method is-config="true" signature="AfterMethod(org.testng.ITestResult)[pri:0, instance:com.nagp.VerifySearchItemFunctionality@4ef74c30]" started-at="2023-08-05T21:55:14 IST" name="AfterMethod" finished-at="2023-08-05T21:55:15 IST" duration-ms="714" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=testSearchItem status=SUCCESS method=VerifySearchItemFunctionality.testSearchItem(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.nagp.VerifySearchItemFunctionality@4ef74c30] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AfterMethod -->
+        <test-method is-config="true" signature="AfterClass()[pri:0, instance:com.nagp.VerifySearchItemFunctionality@4ef74c30]" started-at="2023-08-05T21:55:15 IST" name="AfterClass" finished-at="2023-08-05T21:55:15 IST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AfterClass -->
+        <test-method is-config="true" signature="AfterTest()[pri:0, instance:com.nagp.VerifySearchItemFunctionality@4ef74c30]" started-at="2023-08-05T21:55:15 IST" name="AfterTest" finished-at="2023-08-05T21:55:15 IST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AfterTest -->
+        <test-method is-config="true" signature="afterSuite()[pri:0, instance:com.nagp.VerifySearchItemFunctionality@4ef74c30]" started-at="2023-08-05T21:55:15 IST" name="afterSuite" finished-at="2023-08-05T21:55:16 IST" duration-ms="566" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterSuite -->
+      </class> <!-- com.nagp.VerifySearchItemFunctionality -->
+      <class name="com.nagp.VerifyNewCustomerFunctionality">
+        <test-method is-config="true" signature="BeforeClass()[pri:0, instance:com.nagp.VerifyNewCustomerFunctionality@3cce57c7]" started-at="2023-08-05T21:54:40 IST" name="BeforeClass" finished-at="2023-08-05T21:54:40 IST" duration-ms="8" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- BeforeClass -->
+        <test-method is-config="true" signature="BeforeMethod(java.lang.String,int,java.lang.String,java.lang.String,java.lang.reflect.Method)[pri:0, instance:com.nagp.VerifyNewCustomerFunctionality@3cce57c7]" started-at="2023-08-05T21:54:40 IST" name="BeforeMethod" finished-at="2023-08-05T21:54:48 IST" duration-ms="7625" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[LOCALHOST]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[4444]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[WINDOWS]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[public void com.nagp.VerifyNewCustomerFunctionality.testNewCustomerAccount(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- BeforeMethod -->
+        <test-method signature="testNewCustomerAccount(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.nagp.VerifyNewCustomerFunctionality@3cce57c7]" started-at="2023-08-05T21:54:48 IST" name="testNewCustomerAccount" data-provider="TestData" finished-at="2023-08-05T21:54:53 IST" duration-ms="4793" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Create New Customer Account]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[FirstName]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[LastName]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Email]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[Password]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[Password-confirmation]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testNewCustomerAccount -->
+        <test-method is-config="true" signature="AfterMethod(org.testng.ITestResult)[pri:0, instance:com.nagp.VerifyNewCustomerFunctionality@3cce57c7]" started-at="2023-08-05T21:54:53 IST" name="AfterMethod" finished-at="2023-08-05T21:54:54 IST" duration-ms="766" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=testNewCustomerAccount status=SUCCESS method=VerifyNewCustomerFunctionality.testNewCustomerAccount(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.nagp.VerifyNewCustomerFunctionality@3cce57c7] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AfterMethod -->
+        <test-method is-config="true" signature="AfterClass()[pri:0, instance:com.nagp.VerifyNewCustomerFunctionality@3cce57c7]" started-at="2023-08-05T21:54:54 IST" name="AfterClass" finished-at="2023-08-05T21:54:54 IST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AfterClass -->
+      </class> <!-- com.nagp.VerifyNewCustomerFunctionality -->
+      <class name="com.nagp.VerifyLoginFunctionality">
+        <test-method is-config="true" signature="BeforeClass()[pri:0, instance:com.nagp.VerifyLoginFunctionality@4c5ae43b]" started-at="2023-08-05T21:54:40 IST" name="BeforeClass" finished-at="2023-08-05T21:54:40 IST" duration-ms="8" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- BeforeClass -->
+        <test-method is-config="true" signature="BeforeMethod(java.lang.String,int,java.lang.String,java.lang.String,java.lang.reflect.Method)[pri:0, instance:com.nagp.VerifyLoginFunctionality@4c5ae43b]" started-at="2023-08-05T21:54:40 IST" name="BeforeMethod" finished-at="2023-08-05T21:54:48 IST" duration-ms="7486" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[LOCALHOST]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[4444]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[WINDOWS]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[public void com.nagp.VerifyLoginFunctionality.testSuccessfulLogin(java.lang.String,java.lang.String,java.lang.String)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- BeforeMethod -->
+        <test-method signature="testSuccessfulLogin(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.nagp.VerifyLoginFunctionality@4c5ae43b]" started-at="2023-08-05T21:54:48 IST" name="testSuccessfulLogin" data-provider="TestData" finished-at="2023-08-05T21:54:56 IST" duration-ms="8189" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[poonam@nagarro.com]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Admin1234]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Home Page]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSuccessfulLogin -->
+        <test-method is-config="true" signature="AfterMethod(org.testng.ITestResult)[pri:0, instance:com.nagp.VerifyLoginFunctionality@4c5ae43b]" started-at="2023-08-05T21:54:56 IST" name="AfterMethod" finished-at="2023-08-05T21:54:57 IST" duration-ms="638" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=testSuccessfulLogin status=SUCCESS method=VerifyLoginFunctionality.testSuccessfulLogin(java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:com.nagp.VerifyLoginFunctionality@4c5ae43b] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AfterMethod -->
+        <test-method is-config="true" signature="AfterClass()[pri:0, instance:com.nagp.VerifyLoginFunctionality@4c5ae43b]" started-at="2023-08-05T21:54:57 IST" name="AfterClass" finished-at="2023-08-05T21:54:57 IST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AfterClass -->
+      </class> <!-- com.nagp.VerifyLoginFunctionality -->
+    </test> <!-- UIAutomationTestCase -->
+  </suite> <!-- Suite -->
+</testng-results>
