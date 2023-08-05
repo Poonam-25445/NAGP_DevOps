@@ -32,9 +32,9 @@ import org.xml.sax.SAXException;
  */
 public class ReadFileUtil {
 
-	public String path;
-	public FileInputStream fis = null;
-	public FileOutputStream fileOut = null;
+	public static final String path = null;
+	public static final FileInputStream fis = null;
+	public static final FileOutputStream fileOut = null;
 	public static final HyperlinkType FILE = null;
 
 	private static Logger log = Logger.getLogger(ReadFileUtil.class);
