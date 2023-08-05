@@ -13,7 +13,7 @@ public class CommonPage {
 	private CommonPage() {
 		throw new UnsupportedOperationException("Cannot instantiate utility class");
 	}
-	private static final String PAGENAME = PAGENAME;	
+	private static final String PAGENAME = "Common";	
 	private static final String USER_INFO = "UserInfo";
 	
 	public static final String MY_ACCOUNT = "My Account";
