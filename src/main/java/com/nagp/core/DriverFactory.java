@@ -177,13 +177,20 @@ public class DriverFactory {
 	public static DesiredCapabilities setBrowser(String browser) {
 
 		DesiredCapabilities capabilities = new DesiredCapabilities();
-		if (browser.equalsIgnoreCase(FIREFOX)) {
+		if (browser.equalsIgnoreCase("firefox")) {
 			capabilities.setBrowserName(FIREFOX);
-		} else if (browser.equalsIgnoreCase(CHROME)) {
+		} else if (browser.equalsIgnoreCase("chrome")) {
 			capabilities.setBrowserName(CHROME);;
-		} else if (browser.equalsIgnoreCase(INTERNET_EXPLORER)) {
+		} else if (browser.equalsIgnoreCase("internet explorer")) {
 			capabilities.setBrowserName(INTERNET_EXPLORER);
-		}
+		} else if (browser.equalsIgnoreCase("android")) {
+			LoggingManager.getConsoleLogger().info("[Debug] Android.....");
+			capabilities.setPlatform(Platform.ANDROID);
+		} else if (browser.equalsIgnoreCase("ipad")) {
+			capabilities.setPlatform(Platform.IOS);
+		} else if (browser.equalsIgnoreCase("iphone")) {
+			capabilities.setPlatform(Platform.IOS);
+		}  
 		return capabilities;
 	}
 

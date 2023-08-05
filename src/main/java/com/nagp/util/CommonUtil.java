@@ -188,6 +188,7 @@ public class CommonUtil {
 	 */
 	public static void zipDir(String dir2zip, ZipOutputStream zos){
 		FileInputStream fis = null;
+
 		File zipDir = new File(dir2zip);
 		String[] dirList = zipDir.list();
 		byte[] readBuffer = new byte[2156];
