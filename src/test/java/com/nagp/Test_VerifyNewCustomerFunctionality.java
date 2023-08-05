@@ -7,15 +7,15 @@ import com.nagp.constants.FunctionalGroups;
 import com.nagp.constants.Severity;
 import com.nagp.core.TestBase;
 import com.nagp.dataobjects.DataProviders;
-import com.nagp.pageObjects.CommonPage;
-import com.nagp.pageObjects.LoginPage;
-import com.nagp.pageObjects.NewCustomerAccountPage;
+import com.nagp.pageobjects.CommonPage;
+import com.nagp.pageobjects.LoginPage;
+import com.nagp.pageobjects.NewCustomerAccountPage;
 
 /**
  * @author poonam
  * This class will verify Create new customer account page
  */
-public class VerifyNewCustomerFunctionality extends TestBase {
+public class Test_VerifyNewCustomerFunctionality extends TestBase {
 	
 	
 	/**

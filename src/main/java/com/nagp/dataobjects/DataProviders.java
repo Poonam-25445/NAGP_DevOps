@@ -12,6 +12,10 @@ import com.nagp.util.ReadFileUtil;
  * This DataProvider class is used in order to create data-driven tests.It will run the same test case, but with different data sets.
  */
 public class DataProviders {
+	
+	private DataProviders() {
+		throw new UnsupportedOperationException("Cannot instantiate utility class");
+	}
 
 	/** The use of the comma character (,) typically separates each field of text.
 	 */
@@ -24,7 +28,6 @@ public class DataProviders {
 	 */
 	@DataProvider(name="TestData")
 	public static Object[][] getTestData(Method method){
-		String [][] dataSet = ReadFileUtil.CSVDataProvider(method.getName(), separator ,Config.dataInputFile);
-		return dataSet;
+		return ReadFileUtil.CSVDataProvider(method.getName(), separator ,Config.dataInputFile);
 	}
 }

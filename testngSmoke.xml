@@ -23,9 +23,9 @@
 			</method-selector>
 		</method-selectors>
 		<classes>
-			<class name="com.nagarro.nagp.VerifySearchItemFunctionality" />
-			<class name="com.nagarro.nagp.VerifyNewCustomerFunctionality" />
-			<class name="com.nagarro.nagp.VerifyLoginFunctionality" />
+			<class name="com.nagp.Test_VerifyLoginFunctionality" />
+			<class name="com.nagp.Test_VerifyNewCustomerFunctionality" />
+			<class name="com.nagp.Test_VerifySearchItemFunctionality" />
 		</classes>
 
 	</test>

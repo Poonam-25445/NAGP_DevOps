@@ -129,8 +129,7 @@ public class CommonUtil {
 	 */
 	public static long getFolderSizeInByte(String directory) {
 		File file = new File(directory);
-		long size = FileUtils.sizeOfDirectory(file);
-		return size;
+		return FileUtils.sizeOfDirectory(file);
 	}
 
 	/**
@@ -162,22 +161,6 @@ public class CommonUtil {
 			hrSize = dec.format(b).concat(" Bytes");
 		}
 		return hrSize;
-	}
-
-	/**
-	 * Zip the specified folder.
-	 *
-	 * @param Destloc	path to store the zipped file.
-	 * @param sourceLoc path of folder to be zipped.
-	 */
-	public static void zipfolder(String Destloc, String sourceLoc) {
-		try {
-			ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(Destloc + ".zip"));
-			zipDir(sourceLoc, zos);
-			zos.close();
-		} catch (Exception ex) {
-			LoggingManager.getConsoleLogger().error(ex.getMessage());
-		}
 	}
 
 	/**
@@ -238,7 +221,7 @@ public class CommonUtil {
 		LoggingManager.getConsoleLogger().info(" : sshotSetRelativePath Method Called");
 		try {
 			File f = new File(Config.ExtentReportsPath);
-			ArrayList<String> lines = new ArrayList<String>();
+			ArrayList<String> lines = new ArrayList<>();
 			String line;
 			fr = new FileReader(f);
 			BufferedReader br = new BufferedReader(fr);
@@ -317,7 +300,7 @@ public class CommonUtil {
 	 */
 	public static String getFullPathBasedOnPlatformType(String path){
 		path = path.replace("."+ File.separator, File.separator);  
-		if (!TestBase.PLATFORM_VALUE.equalsIgnoreCase(Platform.LINUX.toString())) {
+		if (!TestBase.platform_Value.equalsIgnoreCase(Platform.LINUX.toString())) {
 			path = System.getProperty("user.dir") + path;
 		}
 	    return path;  

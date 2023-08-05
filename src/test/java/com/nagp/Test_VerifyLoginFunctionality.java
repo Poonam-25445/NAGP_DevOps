@@ -7,15 +7,15 @@ import com.nagp.constants.FunctionalGroups;
 import com.nagp.constants.Severity;
 import com.nagp.core.TestBase;
 import com.nagp.dataobjects.DataProviders;
-import com.nagp.pageObjects.CommonPage;
-import com.nagp.pageObjects.LoginPage;
+import com.nagp.pageobjects.CommonPage;
+import com.nagp.pageobjects.LoginPage;
 
 /**
  * @author poonam
  * This class will verify login functionality
  * 
  */
-public class VerifyLoginFunctionality extends TestBase {
+public class Test_VerifyLoginFunctionality extends TestBase {
 	
 	/**
 	 * This test case verify login functionality with valid user name and password

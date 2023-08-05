@@ -1,4 +1,4 @@
-package com.nagp.pageObjects;
+package com.nagp.pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -8,6 +8,10 @@ import com.nagp.keywords.MKeywords;
 import com.nagp.keywords.SeKeywords;
 
 public class LoginPage {
+	
+	private LoginPage() {
+		throw new UnsupportedOperationException("Cannot instantiate utility class");
+	}
 	
 	private static String pageName = "Login";	
 	
@@ -19,7 +23,7 @@ public class LoginPage {
 	public static void setUserName(String strUserName) {
 		By userNameTextbox = MKeywords.findElement(pageName, "UsernameTextBox");
 		SeKeywords.waitForElementVisibility(userNameTextbox, 30);
-		if (SeKeywords.isIeBrowser) {
+		if (SeKeywords.IS_IE_BROWSER) {
 			((JavascriptExecutor) DriverFactory.getDriver()).executeScript(String.format("document.getElementById('email').value='%s';", strUserName));
 		} else {
 			SeKeywords.setText(userNameTextbox, strUserName);
@@ -32,7 +36,7 @@ public class LoginPage {
 	 * @param strPassword	password value.
 	 */
 	public static void setPassword(String strPassword){
-		if (SeKeywords.isIeBrowser) {
+		if (SeKeywords.IS_IE_BROWSER) {
 			((JavascriptExecutor) DriverFactory.getDriver()).executeScript(String.format("document.getElementById('pass').value='%s';", strPassword));
 		} else {
 		SeKeywords.setText(MKeywords.findElement(pageName,"PasswordTextBox"), strPassword);

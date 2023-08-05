@@ -22,9 +22,18 @@ import com.nagp.logs.LoggingManager;
  * This class contains all the keywords created using methods provided by Selenium Webdriver API.
  */
 public class SeKeywords {
+	private SeKeywords() {
+		throw new UnsupportedOperationException("Cannot instantiate utility class");
+	}
 
-	public static boolean isIeBrowser = TestBase.BROWSER_VALUE.equalsIgnoreCase(DriverFactory.INTERNET_EXPLORER);
-	public static boolean isFirefoxBrowser = TestBase.BROWSER_VALUE.equalsIgnoreCase(DriverFactory.FIREFOX);
+	public static final boolean IS_IE_BROWSER = TestBase.browser_Value.equalsIgnoreCase(DriverFactory.INTERNET_EXPLORER);
+	public static final boolean IS_FIREFOX_BROWSER = TestBase.browser_Value.equalsIgnoreCase(DriverFactory.FIREFOX);
+	
+	public static final String ELEMENT_NOT_FOUND = "Element not found: ";
+	public static final String NO_SUCH_ELEMENT_FOUND = "No Such Element Found";
+	public static final String NOT_FOUND = " not found. ";
+	public static final String TIMEOUT = "TimeOut. ";
+	public static final String TIMEOUT_ELEMENT_NOT_FOUND= "Timeout. Element not found." ;
 
 	/**
 	 * This method waits for visibility of the element present on web page for specified time.
@@ -42,14 +51,14 @@ public class SeKeywords {
 			LoggingManager.getConsoleLogger().info("Element found -> " + element.toString());
 			result = true;
 		} catch (NoSuchElementException e) {
-			LoggingManager.getReportLogger().log(Status.INFO, "\"" + "Element not found: " + "\"" + element.toString() + "\"");
-			LoggingManager.getConsoleLogger().info("No Such Element Found" + e);
+			LoggingManager.getReportLogger().log(Status.INFO, "\"" + ELEMENT_NOT_FOUND + "\"" + element.toString() + "\"");
+			LoggingManager.getConsoleLogger().info(NO_SUCH_ELEMENT_FOUND + e);
 		} catch (TimeoutException e) {
-			LoggingManager.getReportLogger().log(Status.INFO, "\"" + "TimeOut. " + "\"" + element.toString() + "\"" + " not found. " + "\"");
-			LoggingManager.getConsoleLogger().info("Timeout. Element not found." + e);
+			LoggingManager.getReportLogger().log(Status.INFO, "\"" + TIMEOUT + "\"" + element.toString() + "\"" + NOT_FOUND + "\"");
+			LoggingManager.getConsoleLogger().info(TIMEOUT_ELEMENT_NOT_FOUND+ e);
 		} catch (Exception e) {
-			LoggingManager.getReportLogger().log(Status.INFO, "\"" + "Element not found: " + "\"" + element.toString() + "\"");
-			LoggingManager.getConsoleLogger().info("No Such Element Found" + e);
+			LoggingManager.getReportLogger().log(Status.INFO, "\"" + ELEMENT_NOT_FOUND + "\"" + element.toString() + "\"");
+			LoggingManager.getConsoleLogger().info(NO_SUCH_ELEMENT_FOUND + e);
 		}
 		return result;
 	}
@@ -68,13 +77,13 @@ public class SeKeywords {
 			return foundElements;
 		}
 		catch (TimeoutException e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "TimeOut. " + "\"" + element.toString() + "\"" + " not found. " + "\"");
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + TIMEOUT + "\"" + element.toString() + "\"" + NOT_FOUND + "\"");
 			LoggingManager.getConsoleLogger().error("TimeOut. Element not found" + e);
 			throw(e);
 		} 
 		catch (Exception e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "Element not found: " + "\"" + element.toString() + "\"");
-			LoggingManager.getConsoleLogger().error("No Such Element Found" + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + ELEMENT_NOT_FOUND + "\"" + element.toString() + "\"");
+			LoggingManager.getConsoleLogger().error(NO_SUCH_ELEMENT_FOUND + e);
 			throw(e);
 		}	
 	}
@@ -98,16 +107,15 @@ public class SeKeywords {
 			} else {
 				LoggingManager.getReportLogger().log(Status.INFO, "\"" + "Element not enabled: " + "\"" + element.toString() + "\"");
 				LoggingManager.getConsoleLogger().info("Element not enabled -> " + element.toString());
-				result = false;
 			}
 		} catch (NoSuchElementException e) {
-			LoggingManager.getReportLogger().log(Status.INFO, "\"" + "Element not found: " + "\"" + element.toString() + "\"");
+			LoggingManager.getReportLogger().log(Status.INFO, "\"" + ELEMENT_NOT_FOUND + "\"" + element.toString() + "\"");
 			LoggingManager.getConsoleLogger().info("No Such Element Found " + e);
 		} catch (TimeoutException e) {
-			LoggingManager.getReportLogger().log(Status.INFO, "\"" + "TimeOut. " + "\"" + element.toString() + "\"" + " not found. " + "\"");
-			LoggingManager.getConsoleLogger().info("Timeout. Element not found." + e);
+			LoggingManager.getReportLogger().log(Status.INFO, "\"" + TIMEOUT + "\"" + element.toString() + "\"" + NOT_FOUND + "\"");
+			LoggingManager.getConsoleLogger().info(TIMEOUT_ELEMENT_NOT_FOUND+ e);
 		} catch (Exception e) {
-			LoggingManager.getReportLogger().log(Status.INFO, "\"" + "Element not found: " + "\"" + element.toString() + "\"");
+			LoggingManager.getReportLogger().log(Status.INFO, "\"" + ELEMENT_NOT_FOUND + "\"" + element.toString() + "\"");
 			LoggingManager.getConsoleLogger().info("No Such Element Found " + e);
 		}
 		return result;
@@ -123,7 +131,7 @@ public class SeKeywords {
 			Actions a=new Actions(DriverFactory.getDriver());
 			WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(30));
 			wait.until(ExpectedConditions.presenceOfElementLocated(element));
-			if(SeKeywords.isFirefoxBrowser||SeKeywords.isIeBrowser) {
+			if(SeKeywords.IS_FIREFOX_BROWSER||SeKeywords.IS_IE_BROWSER) {
 				JavaScriptKeywords.scrollElementIntoView(element, true);
 			}else {
 				a.moveToElement(DriverFactory.getDriver().findElement(element)).perform();
@@ -131,16 +139,16 @@ public class SeKeywords {
 			LoggingManager.getReportLogger().log(Status.PASS, "\"" + "Scrolled to " + "\"" + element.toString() + "\"");
 			LoggingManager.getConsoleLogger().info("Scrolled to -> " + element.toString());
 		} catch (NoSuchElementException e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "Element not found: " + "\"" + element.toString() + "\"");
-			LoggingManager.getConsoleLogger().error("No Such Element Found" + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + ELEMENT_NOT_FOUND + "\"" + element.toString() + "\"");
+			LoggingManager.getConsoleLogger().error(NO_SUCH_ELEMENT_FOUND + e);
 			throw(e);
 		} catch (TimeoutException e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "TimeOut. " + "\"" + element.toString() + "\"" + " not found. " + "\"");
-			LoggingManager.getConsoleLogger().error("Timeout. Element not found." + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + TIMEOUT + "\"" + element.toString() + "\"" + NOT_FOUND + "\"");
+			LoggingManager.getConsoleLogger().error(TIMEOUT_ELEMENT_NOT_FOUND+ e);
 			throw(e);
 		} catch (Exception e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "Element not found: " + "\"" + element.toString() + "\"");
-			LoggingManager.getConsoleLogger().error("No Such Element Found" + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + ELEMENT_NOT_FOUND + "\"" + element.toString() + "\"");
+			LoggingManager.getConsoleLogger().error(NO_SUCH_ELEMENT_FOUND + e);
 			throw(e);
 
 		}
@@ -167,12 +175,12 @@ public class SeKeywords {
 			LoggingManager.getConsoleLogger().error("getTextElement not found" + e);
 			throw(e);
 		} catch (TimeoutException e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "TimeOut. " + "\"" + element.toString() + "\"" + " not found. " + "\"");
-			LoggingManager.getConsoleLogger().error("Timeout. Element not found." + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + TIMEOUT + "\"" + element.toString() + "\"" + NOT_FOUND + "\"");
+			LoggingManager.getConsoleLogger().error(TIMEOUT_ELEMENT_NOT_FOUND+ e);
 			throw(e);
 		} catch (Exception e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "Element not found: " + "\"" + element.toString() + "\"");
-			LoggingManager.getConsoleLogger().error("No Such Element Found" + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + ELEMENT_NOT_FOUND + "\"" + element.toString() + "\"");
+			LoggingManager.getConsoleLogger().error(NO_SUCH_ELEMENT_FOUND + e);
 			throw(e);
 		}
 		return text;
@@ -194,7 +202,7 @@ public class SeKeywords {
 			List<WebElement> options = modalbuttons.findElements(By.tagName("button"));
 			for (WebElement option : options) {
 				if (buttonName.equalsIgnoreCase(option.getText())){
-					MKeywords.Sleep(2000);
+					MKeywords.sleep(2000);
 					wait.until(ExpectedConditions.elementToBeClickable(option));
 					Actions action_obj=new Actions(DriverFactory.getDriver());
 					action_obj.moveToElement(option).click().build().perform();
@@ -209,13 +217,13 @@ public class SeKeywords {
 			throw(e);
 
 		} catch (TimeoutException e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "TimeOut. " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"" + " not found. " + "\"");
-			LoggingManager.getConsoleLogger().error("Timeout. Element not found." + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + TIMEOUT + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"" + NOT_FOUND + "\"");
+			LoggingManager.getConsoleLogger().error(TIMEOUT_ELEMENT_NOT_FOUND+ e);
 			throw(e);
 
 		} catch (Exception e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "Element not found: " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
-			LoggingManager.getConsoleLogger().error("No Such Element Found" + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + ELEMENT_NOT_FOUND + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
+			LoggingManager.getConsoleLogger().error(NO_SUCH_ELEMENT_FOUND + e);
 			throw(e);
 		}
 	}
@@ -236,14 +244,14 @@ public class SeKeywords {
 			LoggingManager.getConsoleLogger().info("Presence of element visibilty verified for" + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
 			result = true;
 		} catch (NoSuchElementException e) {
-			LoggingManager.getReportLogger().log(Status.INFO, "\"" + "Element not found: " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
-			LoggingManager.getConsoleLogger().info("No Such Element Found" + e);
+			LoggingManager.getReportLogger().log(Status.INFO, "\"" + ELEMENT_NOT_FOUND + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
+			LoggingManager.getConsoleLogger().info(NO_SUCH_ELEMENT_FOUND + e);
 		} catch (TimeoutException e) {
-			LoggingManager.getReportLogger().log(Status.INFO, "\"" + "TimeOut. " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"" + " not found. " + "\"");
-			LoggingManager.getConsoleLogger().info("Timeout. Element not found." + e);
+			LoggingManager.getReportLogger().log(Status.INFO, "\"" + TIMEOUT + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"" + NOT_FOUND + "\"");
+			LoggingManager.getConsoleLogger().info(TIMEOUT_ELEMENT_NOT_FOUND+ e);
 		} catch (Exception e) {
-			LoggingManager.getReportLogger().log(Status.INFO, "\"" + "Element not found: " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
-			LoggingManager.getConsoleLogger().info("No Such Element Found" + e);
+			LoggingManager.getReportLogger().log(Status.INFO, "\"" + ELEMENT_NOT_FOUND + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
+			LoggingManager.getConsoleLogger().info(NO_SUCH_ELEMENT_FOUND + e);
 		}
 		return result;
 	}
@@ -266,11 +274,11 @@ public class SeKeywords {
 			LoggingManager.getReportLogger().log(Status.INFO, "\"" + "Clickable Element not found: " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
 			LoggingManager.getConsoleLogger().info("Clickable Element not found" + e);
 		} catch (TimeoutException e) {
-			LoggingManager.getReportLogger().log(Status.INFO, "\"" + "TimeOut. " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"" + " not found. " + "\"");
-			LoggingManager.getConsoleLogger().info("Timeout. Element not found." + e);
+			LoggingManager.getReportLogger().log(Status.INFO, "\"" + TIMEOUT + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"" + NOT_FOUND + "\"");
+			LoggingManager.getConsoleLogger().info(TIMEOUT_ELEMENT_NOT_FOUND+ e);
 		} catch (Exception e) {
-			LoggingManager.getReportLogger().log(Status.INFO, "\"" + "Element not found: " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
-			LoggingManager.getConsoleLogger().info("No Such Element Found" + e);
+			LoggingManager.getReportLogger().log(Status.INFO, "\"" + ELEMENT_NOT_FOUND + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
+			LoggingManager.getConsoleLogger().info(NO_SUCH_ELEMENT_FOUND + e);
 		}
 	}
 
@@ -290,14 +298,14 @@ public class SeKeywords {
 			LoggingManager.getConsoleLogger().info("Element invisibility verified for " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
 			result = true;
 		} catch (NoSuchElementException e) {
-			LoggingManager.getReportLogger().log(Status.INFO, "\"" + "Element not found: " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
-			LoggingManager.getConsoleLogger().info("No Such Element Found" + e);
+			LoggingManager.getReportLogger().log(Status.INFO, "\"" + ELEMENT_NOT_FOUND + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
+			LoggingManager.getConsoleLogger().info(NO_SUCH_ELEMENT_FOUND + e);
 		} catch (TimeoutException e) {
-			LoggingManager.getReportLogger().log(Status.INFO, "\"" + "TimeOut. " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"" + " not found. " + "\"");
-			LoggingManager.getConsoleLogger().info("Timeout. Element not found." + e);
+			LoggingManager.getReportLogger().log(Status.INFO, "\"" + TIMEOUT + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"" + NOT_FOUND + "\"");
+			LoggingManager.getConsoleLogger().info(TIMEOUT_ELEMENT_NOT_FOUND+ e);
 		} catch (Exception e) {
-			LoggingManager.getReportLogger().log(Status.INFO, "\"" + "Element not found: " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
-			LoggingManager.getConsoleLogger().info("No Such Element Found" + e);
+			LoggingManager.getReportLogger().log(Status.INFO, "\"" + ELEMENT_NOT_FOUND + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
+			LoggingManager.getConsoleLogger().info(NO_SUCH_ELEMENT_FOUND + e);
 		}
 		return result;
 	}
@@ -317,14 +325,14 @@ public class SeKeywords {
 			LoggingManager.getReportLogger().log(Status.PASS, "Staleness of element is verified: " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
 			LoggingManager.getConsoleLogger().info("Staleness of element is verified: " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
 		} catch (NoSuchElementException e) {
-			LoggingManager.getReportLogger().log(Status.INFO, "\"" + "Element not found: " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
+			LoggingManager.getReportLogger().log(Status.INFO, "\"" + ELEMENT_NOT_FOUND + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
 			LoggingManager.getConsoleLogger().info("Element not found" + e);
 		} catch (TimeoutException e) {
-			LoggingManager.getReportLogger().log(Status.INFO, "\"" + "TimeOut. " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"" + " not found. " + "\"");
-			LoggingManager.getConsoleLogger().info("Timeout. Element not found." + e);
+			LoggingManager.getReportLogger().log(Status.INFO, "\"" + TIMEOUT + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"" + NOT_FOUND + "\"");
+			LoggingManager.getConsoleLogger().info(TIMEOUT_ELEMENT_NOT_FOUND+ e);
 		} catch (Exception e) {
-			LoggingManager.getReportLogger().log(Status.INFO, "\"" + "Element not found: " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
-			LoggingManager.getConsoleLogger().info("No Such Element Found" + e);
+			LoggingManager.getReportLogger().log(Status.INFO, "\"" + ELEMENT_NOT_FOUND + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
+			LoggingManager.getConsoleLogger().info(NO_SUCH_ELEMENT_FOUND + e);
 		}
 	}
 
@@ -350,12 +358,12 @@ public class SeKeywords {
 			LoggingManager.getConsoleLogger().error("Textbox to enter text not found" + e);
 			throw(e);
 		} catch (TimeoutException e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "TimeOut. " + "\"" + textBox.toString() + "\"" + " not found. " + "\"");
-			LoggingManager.getConsoleLogger().error("Timeout. Element not found." + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + TIMEOUT + "\"" + textBox.toString() + "\"" + NOT_FOUND + "\"");
+			LoggingManager.getConsoleLogger().error(TIMEOUT_ELEMENT_NOT_FOUND+ e);
 			throw(e);
 		} catch (Exception e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "Element not found: " + "\"" + textBox.toString() + "\"");
-			LoggingManager.getConsoleLogger().error("No Such Element Found" + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + ELEMENT_NOT_FOUND + "\"" + textBox.toString() + "\"");
+			LoggingManager.getConsoleLogger().error(NO_SUCH_ELEMENT_FOUND + e);
 			throw(e);
 
 		}
@@ -386,13 +394,13 @@ public class SeKeywords {
 			throw(e);
 
 		} catch (TimeoutException e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "TimeOut. " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"" + " not found. " + "\"");
-			LoggingManager.getConsoleLogger().error("Timeout. Element not found." + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + TIMEOUT + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"" + NOT_FOUND + "\"");
+			LoggingManager.getConsoleLogger().error(TIMEOUT_ELEMENT_NOT_FOUND+ e);
 			throw(e);
 
 		} catch (Exception e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "Element not found: " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
-			LoggingManager.getConsoleLogger().error("No Such Element Found" + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + ELEMENT_NOT_FOUND + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
+			LoggingManager.getConsoleLogger().error(NO_SUCH_ELEMENT_FOUND + e);
 			throw(e);
 		}
 	}
@@ -406,7 +414,7 @@ public class SeKeywords {
 	public static void click(By element) {
 
 		try {
-			if(isFirefoxBrowser) {
+			if(IS_FIREFOX_BROWSER) {
 				SeKeywords.waitForStalenessOfElement(element, 20);
 			}
 			WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(30));
@@ -417,12 +425,12 @@ public class SeKeywords {
 			LoggingManager.getConsoleLogger().error("Clickable Element not found" + e);
 			throw(e);
 		} catch (TimeoutException e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "TimeOut. " + "\"" + element.toString() + "\"" + " not found. " + "\"");
-			LoggingManager.getConsoleLogger().error("Timeout. Element not found." + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + TIMEOUT + "\"" + element.toString() + "\"" + NOT_FOUND + "\"");
+			LoggingManager.getConsoleLogger().error(TIMEOUT_ELEMENT_NOT_FOUND+ e);
 			throw(e);
 		} catch (Exception e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "Element not found: " + "\"" + element.toString() + "\"");
-			LoggingManager.getConsoleLogger().error("No Such Element Found" + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + ELEMENT_NOT_FOUND + "\"" + element.toString() + "\"");
+			LoggingManager.getConsoleLogger().error(NO_SUCH_ELEMENT_FOUND + e);
 			throw(e);
 		}
 	}
@@ -436,7 +444,7 @@ public class SeKeywords {
 	public static void clickElement(By element) {
 
 		try {
-			if(isIeBrowser) {
+			if(IS_IE_BROWSER) {
 				JavaScriptKeywords.clickUsingJs(DriverFactory.getDriver().findElement(element));
 			}else {
 				DriverFactory.getDriver().findElement(element).click();
@@ -448,12 +456,12 @@ public class SeKeywords {
 			LoggingManager.getConsoleLogger().error("Clickable Element not found" + e);
 			throw(e);
 		} catch (TimeoutException e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "TimeOut. " + "\"" + element.toString() + "\"" + " not found. " + "\"");
-			LoggingManager.getConsoleLogger().error("Timeout. Element not found." + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + TIMEOUT + "\"" + element.toString() + "\"" + NOT_FOUND + "\"");
+			LoggingManager.getConsoleLogger().error(TIMEOUT_ELEMENT_NOT_FOUND+ e);
 			throw(e);
 		} catch (Exception e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "Element not found: " + "\"" + element.toString() + "\"");
-			LoggingManager.getConsoleLogger().error("No Such Element Found" + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + ELEMENT_NOT_FOUND + "\"" + element.toString() + "\"");
+			LoggingManager.getConsoleLogger().error(NO_SUCH_ELEMENT_FOUND + e);
 			throw(e);
 		}
 	}
@@ -468,7 +476,7 @@ public class SeKeywords {
 		try {
 			WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(30));
 			wait.until(ExpectedConditions.elementToBeClickable(element));
-			if(isIeBrowser) {
+			if(IS_IE_BROWSER) {
 				JavaScriptKeywords.clickUsingJs(DriverFactory.getDriver().findElement(element));
 			}else {
 				DriverFactory.getDriver().findElement(element).click();
@@ -480,12 +488,12 @@ public class SeKeywords {
 			LoggingManager.getConsoleLogger().error("Clickable Element not found" + e);
 			throw(e);
 		} catch (TimeoutException e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "TimeOut. " + "\"" + element.toString() + "\"" + " not found. " + "\"");
-			LoggingManager.getConsoleLogger().error("Timeout. Element not found." + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + TIMEOUT + "\"" + element.toString() + "\"" + NOT_FOUND + "\"");
+			LoggingManager.getConsoleLogger().error(TIMEOUT_ELEMENT_NOT_FOUND+ e);
 			throw(e);
 		} catch (Exception e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "Element not found: " + "\"" + element.toString() + "\"");
-			LoggingManager.getConsoleLogger().error("No Such Element Found" + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + ELEMENT_NOT_FOUND + "\"" + element.toString() + "\"");
+			LoggingManager.getConsoleLogger().error(NO_SUCH_ELEMENT_FOUND + e);
 			throw(e);
 		}
 	}
@@ -503,16 +511,16 @@ public class SeKeywords {
 			LoggingManager.getReportLogger().log(Status.PASS, "\"" + "Scrolled & Clicked " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
 			LoggingManager.getConsoleLogger().info("\"" + "Scrolled & Clicked " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
 		} catch (NoSuchElementException e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "Element not found: " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
-			LoggingManager.getConsoleLogger().error("No Such Element Found" + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + ELEMENT_NOT_FOUND + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
+			LoggingManager.getConsoleLogger().error(NO_SUCH_ELEMENT_FOUND + e);
 			throw(e);
 		} catch (TimeoutException e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "TimeOut. " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"" + " not found. " + "\"");
-			LoggingManager.getConsoleLogger().error("Timeout. Element not found." + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + TIMEOUT + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"" + NOT_FOUND + "\"");
+			LoggingManager.getConsoleLogger().error(TIMEOUT_ELEMENT_NOT_FOUND+ e);
 			throw(e);
 		} catch (Exception e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "Element not found: " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
-			LoggingManager.getConsoleLogger().error("No Such Element Found" + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + ELEMENT_NOT_FOUND + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
+			LoggingManager.getConsoleLogger().error(NO_SUCH_ELEMENT_FOUND + e);
 			throw(e);
 		}
 	}
@@ -537,12 +545,12 @@ public class SeKeywords {
 			throw(e);
 
 		} catch (TimeoutException e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "TimeOut. " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"" + " not found. " + "\"");
-			LoggingManager.getConsoleLogger().error("Timeout. Element not found." + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + TIMEOUT + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"" + NOT_FOUND + "\"");
+			LoggingManager.getConsoleLogger().error(TIMEOUT_ELEMENT_NOT_FOUND+ e);
 			throw(e);
 		} catch (Exception e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "Element not found: " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
-			LoggingManager.getConsoleLogger().error("No Such Element Found" + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + ELEMENT_NOT_FOUND + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
+			LoggingManager.getConsoleLogger().error(NO_SUCH_ELEMENT_FOUND + e);
 			throw(e);
 		}
 	}
@@ -555,7 +563,7 @@ public class SeKeywords {
 	public static String getPageTitle() {
 		String title = null;
 		try {
-			MKeywords.Sleep(1000);
+			MKeywords.sleep(1000);
 			title = DriverFactory.getDriver().getTitle();
 			LoggingManager.getReportLogger().log(Status.PASS, "Title for " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"" + "is" + title + "\"");
 			LoggingManager.getConsoleLogger().info( "Title for " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"" + "is" + title + "\"");
@@ -565,12 +573,12 @@ public class SeKeywords {
 			LoggingManager.getConsoleLogger().error("Title not found" + e);
 			throw(e);
 		} catch (TimeoutException e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "TimeOut. " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"" + " not found. " + "\"");
-			LoggingManager.getConsoleLogger().error("Timeout. Element not found." + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + TIMEOUT + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"" + NOT_FOUND + "\"");
+			LoggingManager.getConsoleLogger().error(TIMEOUT_ELEMENT_NOT_FOUND+ e);
 			throw(e);
 		} catch (Exception e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "Element not found: " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
-			LoggingManager.getConsoleLogger().error("No Such Element Found" + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + ELEMENT_NOT_FOUND + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
+			LoggingManager.getConsoleLogger().error(NO_SUCH_ELEMENT_FOUND + e);
 			throw(e);
 		}
 		return title;
@@ -592,7 +600,6 @@ public class SeKeywords {
 			} else {
 				LoggingManager.getReportLogger().log(Status.INFO, "\"" + text + "\"" + " is not found. " + "\"");
 				LoggingManager.getConsoleLogger().info("\"" + text + "\"" + " is not found. " + "\"");
-				result = false;
 			}
 		} catch (Exception e) {
 			LoggingManager.getReportLogger().log(Status.INFO, "\"" + text + "\"" + " is not found on Page " + "\"");
@@ -620,13 +627,13 @@ public class SeKeywords {
 			}
 		} catch (NoSuchElementException e) {
 			LoggingManager.getReportLogger().log(Status.INFO, "\"" + "Element not visible: " + "\"" + element.toString() + "\"");
-			LoggingManager.getConsoleLogger().info("No Such Element Found" + e);
+			LoggingManager.getConsoleLogger().info(NO_SUCH_ELEMENT_FOUND + e);
 		} catch (TimeoutException e) {
-			LoggingManager.getReportLogger().log(Status.INFO, "\"" + "TimeOut. " + "\"" + element.toString() + "\"" + " not found. " + "\"");
-			LoggingManager.getConsoleLogger().info("Timeout. Element not found." + e);
+			LoggingManager.getReportLogger().log(Status.INFO, "\"" + TIMEOUT + "\"" + element.toString() + "\"" + NOT_FOUND + "\"");
+			LoggingManager.getConsoleLogger().info(TIMEOUT_ELEMENT_NOT_FOUND+ e);
 		} catch (Exception e) {
-			LoggingManager.getReportLogger().log(Status.INFO, "\"" + "Element not found: " + "\"" + element.toString() + "\"");
-			LoggingManager.getConsoleLogger().info("No Such Element Found" + e);
+			LoggingManager.getReportLogger().log(Status.INFO, "\"" + ELEMENT_NOT_FOUND + "\"" + element.toString() + "\"");
+			LoggingManager.getConsoleLogger().info(NO_SUCH_ELEMENT_FOUND + e);
 		}
 		return result;	
 	}
@@ -637,11 +644,11 @@ public class SeKeywords {
 	 * @return current URL
 	 */
 	public static String getCurrentURL() {
-		String URL = null;
+		String url = null;
 		try {
-			URL = DriverFactory.getDriver().getCurrentUrl();
-			LoggingManager.getReportLogger().log(Status.PASS, "\"" + "Current URL is:  " + "\"" + URL + "\"");
-			LoggingManager.getConsoleLogger().info( "\"" + "Current URL is:  " + "\"" + URL + "\"");
+			url = DriverFactory.getDriver().getCurrentUrl();
+			LoggingManager.getReportLogger().log(Status.PASS, "\"" + "Current URL is:  " + "\"" + url + "\"");
+			LoggingManager.getConsoleLogger().info( "\"" + "Current URL is:  " + "\"" + url + "\"");
 		} catch (NoSuchElementException e) {
 			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "URL not found. " + "\"");
 			LoggingManager.getConsoleLogger().error("URL not found." + e);
@@ -649,15 +656,15 @@ public class SeKeywords {
 
 		} catch (TimeoutException e) {
 			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "TimeOut. URL not found. " + "\"");
-			LoggingManager.getConsoleLogger().error("Timeout. Element not found." + e);
+			LoggingManager.getConsoleLogger().error(TIMEOUT_ELEMENT_NOT_FOUND+ e);
 			throw(e);
 
 		} catch (Exception e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "Element not found: " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
-			LoggingManager.getConsoleLogger().error("No Such Element Found" + e);
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + ELEMENT_NOT_FOUND + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"");
+			LoggingManager.getConsoleLogger().error(NO_SUCH_ELEMENT_FOUND + e);
 			throw(e);
 		}
-		return URL;
+		return url;
 	}
 
 	/**
@@ -674,7 +681,7 @@ public class SeKeywords {
 			LoggingManager.getReportLogger().log(Status.PASS, "page title " +pageTitle + " is verified." + "\"");
 			LoggingManager.getConsoleLogger().info("page title " +pageTitle + " is verified." + "\"");
 		}catch (TimeoutException e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "TimeOut. " + "page title " +pageTitle + " is not verified." + "\"");
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + TIMEOUT + "page title " +pageTitle + " is not verified." + "\"");
 			LoggingManager.getConsoleLogger().error("Timeout. page title " +pageTitle + " is not verified." + e);
 			throw(e);
 		}catch (Exception e) {
@@ -699,7 +706,7 @@ public class SeKeywords {
  		        }
  		        catch(Exception ex)
  		        {
- 		        	MKeywords.Sleep(10000);
+ 		        	MKeywords.sleep(10000);
  		           continue;
  		        }
  		   }

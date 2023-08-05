@@ -52,10 +52,10 @@ public class TestNGListeners implements ITestListener{
 	@Override
 	public void onFinish(ITestContext context) {
 		LoggingManager.getConsoleLogger().info("Test Suite executed -> " + context.getName());
-		try {
-		} catch (Exception exception) {
-			LoggingManager.getConsoleLogger().info("JUnit XML report not created due to exception: " + exception);
-		}
+		/*
+		 * try { } catch (Exception exception) { LoggingManager.getConsoleLogger().
+		 * info("JUnit XML report not created due to exception: " + exception); }
+		 */
 	}
 
 	/**
@@ -70,6 +70,7 @@ public class TestNGListeners implements ITestListener{
 
 	@Override
 	public void onTestFailedButWithinSuccessPercentage(ITestResult arg0) {
+		throw new UnsupportedOperationException("Cannot instantiate utility class");
 	}
 
 	/**

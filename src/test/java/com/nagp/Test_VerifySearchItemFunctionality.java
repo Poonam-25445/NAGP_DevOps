@@ -8,14 +8,14 @@ import com.nagp.constants.Severity;
 import com.nagp.core.TestBase;
 import com.nagp.dataobjects.DataProviders;
 import com.nagp.keywords.SeKeywords;
-import com.nagp.pageObjects.HomePage;
+import com.nagp.pageobjects.HomePage;
 
 /**
  * @author poonam
  * This class will check search functionality
  * 
  */
-public class VerifySearchItemFunctionality extends TestBase {
+public class Test_VerifySearchItemFunctionality extends TestBase {
 	
 	
 /**

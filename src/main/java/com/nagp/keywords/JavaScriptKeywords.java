@@ -18,6 +18,12 @@ import com.nagp.logs.LoggingManager;
  * This class contains all the keywords created using Java script.
  */
 public class JavaScriptKeywords {
+	
+	public static final String SCROLL_TO_ELEMENT = "scrolled to element: ";
+	
+	private JavaScriptKeywords() {
+		throw new UnsupportedOperationException("Cannot instantiate utility class");
+	}
 
 	/**
 	 * This method click on element using java script by a WebElement.
@@ -26,7 +32,7 @@ public class JavaScriptKeywords {
 	 */
 	public static void clickUsingJs(WebElement element) {
 		JavascriptExecutor executor = (JavascriptExecutor) DriverFactory.getDriver();
-		MKeywords.Sleep(1000);
+		MKeywords.sleep(1000);
 		executor.executeScript("arguments[0].click();", element);
 	}
 
@@ -63,7 +69,7 @@ public class JavaScriptKeywords {
 							}
 						});
 			}
-			MKeywords.Sleep(2000);
+			MKeywords.sleep(2000);
 		} catch (TimeoutException e) {
 			LoggingManager.getConsoleLogger()
 					.info("\"" + "Ajax call did not complete. Waited for " + seconds + " seconds. " + e + "\"");
@@ -84,8 +90,8 @@ public class JavaScriptKeywords {
 		JavascriptExecutor executor = (JavascriptExecutor) DriverFactory.getDriver();
 		executor.executeScript("arguments[0].scrollIntoView(" + scrollDown + ");", element);
 		LoggingManager.getReportLogger().log(Status.INFO,
-				"\"" + "scrolled to element: " + "\"" + element.getText() + "\"");
-		LoggingManager.getConsoleLogger().info("\"" + "scrolled to element: " + "\"" + element.getText() + "\"");
+				"\"" + SCROLL_TO_ELEMENT + "\"" + element.getText() + "\"");
+		LoggingManager.getConsoleLogger().info("\"" + SCROLL_TO_ELEMENT + "\"" + element.getText() + "\"");
 	}
 
 	/**
@@ -101,7 +107,7 @@ public class JavaScriptKeywords {
 		JavascriptExecutor executor = (JavascriptExecutor) DriverFactory.getDriver();
 		executor.executeScript("arguments[0].scrollIntoView(" + scrollDown + ");", webElement);
 		LoggingManager.getReportLogger().log(Status.INFO,
-				"\"" + "scrolled to element: " + "\"" + webElement.getText() + "\"");
-		LoggingManager.getConsoleLogger().info("\"" + "scrolled to element: " + "\"" + webElement.getText() + "\"");
+				"\"" + SCROLL_TO_ELEMENT + "\"" + webElement.getText() + "\"");
+		LoggingManager.getConsoleLogger().info("\"" + SCROLL_TO_ELEMENT + "\"" + webElement.getText() + "\"");
 	}
 }

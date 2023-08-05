@@ -10,10 +10,10 @@
 		<parameter name="webdriverPort" value="4444"></parameter>
 		<parameter name="platform" value="WINDOWS" />
 		<classes>
-			<class name="com.nagp.VerifySearchItemFunctionality" />
-			<class name="com.nagp.VerifyNewCustomerFunctionality" />
-			<class name="com.nagp.VerifyLoginFunctionality" />
+			<class name="com.nagp.Test_VerifyLoginFunctionality" />
+			<class name="com.nagp.Test_VerifyNewCustomerFunctionality" />
+			<class name="com.nagp.Test_VerifySearchItemFunctionality" />
 		</classes>
 
 	</test>
-</suite><!-- Suite -->
+</suite> <!-- Suite -->

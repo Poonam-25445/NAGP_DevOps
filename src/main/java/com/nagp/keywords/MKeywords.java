@@ -25,7 +25,13 @@ import com.nagp.util.ReadFileUtil;
  * values from ObjectRepository.xml file.
  */
 public class MKeywords {
+	
+	private MKeywords() {
+		throw new UnsupportedOperationException("Cannot instantiate utility class");
+	}
 
+	public static final String FAILED_TO_READ_XML = "Failed to read data from XML file";
+	public static final String NOT_FOUND = " not found. ";
 	/**
 	 * Get page the element.
 	 *
@@ -70,8 +76,8 @@ public class MKeywords {
 								+ locatorValue);
 			}
 		} catch (Exception ex) {
-			LoggingManager.getReportLogger().log(Status.INFO, "Failed to read data from XML file" + ex);
-			LoggingManager.getConsoleLogger().info("Failed to read data from XML file" + ex);
+			LoggingManager.getReportLogger().log(Status.INFO, FAILED_TO_READ_XML + ex);
+			LoggingManager.getConsoleLogger().info(FAILED_TO_READ_XML + ex);
 		}
 		return element;
 	}
@@ -83,9 +89,9 @@ public class MKeywords {
 	 * @param objectName name of element.
 	 * @return By returns By data type.
 	 */
-	public static By findElement(String PageName, String objectName) {
+	public static By findElement(String pageName, String objectName) {
 		By element = null;
-		List<String> listLocator = getLocatorDetails(objectName, PageName);
+		List<String> listLocator = getLocatorDetails(objectName, pageName);
 		if (listLocator != null && !listLocator.isEmpty()) {
 			element = getElement(listLocator.get(0), listLocator.get(1));
 		}
@@ -97,7 +103,7 @@ public class MKeywords {
 	 *
 	 * @param milliseconds time in milliseconds.
 	 */
-	public static void Sleep(int milliseconds) {
+	public static void sleep(int milliseconds) {
 		try {
 			Thread.sleep(milliseconds);
 		} catch (Exception ex) {
@@ -114,8 +120,7 @@ public class MKeywords {
 	 */
 	public static String getAbsolutePath(String log4jPath) {
 		File file = new File(log4jPath);
-		String path = file.getAbsolutePath();
-		return path;
+		return file.getAbsolutePath();
 	}
 
 	/**
@@ -125,15 +130,15 @@ public class MKeywords {
 	 * @param PageName   page name tag in ObjectRepository.xml file.
 	 * @return List of string
 	 */
-	private static List<String> getLocatorDetails(String objectName, String PageName) {
+	private static List<String> getLocatorDetails(String objectName, String pageName) {
 		List<String> listLocator = null;
 		try {
 			LoggingManager.getInstance().setCurrentElementPath(objectName);
 			String xmlPath = Config.locatorsFile;
-			listLocator = ReadFileUtil.getXmlValue(objectName, xmlPath, PageName);
+			listLocator = ReadFileUtil.getXmlValue(objectName, xmlPath, pageName);
 		} catch (Exception ex) {
-			LoggingManager.getReportLogger().log(Status.INFO, "Failed to read data from XML file" + ex);
-			LoggingManager.getConsoleLogger().info("Failed to read data from XML file" + ex);
+			LoggingManager.getReportLogger().log(Status.INFO, FAILED_TO_READ_XML + ex);
+			LoggingManager.getConsoleLogger().info(FAILED_TO_READ_XML + ex);
 		}
 		return listLocator;
 	}
@@ -145,16 +150,16 @@ public class MKeywords {
 	 * @param dropDownList the drop down list selector
 	 * @return the dropdown values
 	 */
-	public static ArrayList<String> getDropdownValues(By dropDownButton, By dropDownList) {
-		ArrayList<String> dropdownValues = null;
+	public static List<String> getDropdownValues(By dropDownButton, By dropDownList) {
+		List<String> dropdownValues = null;
 		try {
-			dropdownValues = new ArrayList<String>();
+			dropdownValues = new ArrayList<>();
 			WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(30));
-			MKeywords.Sleep(2000);
+			MKeywords.sleep(2000);
 			SeKeywords.moveToElement(dropDownButton);
 			wait.until(ExpectedConditions.elementToBeClickable(dropDownButton));
 			SeKeywords.scrollAndClick(dropDownButton);
-			MKeywords.Sleep(1000);
+			MKeywords.sleep(1000);
 			wait.until(ExpectedConditions.elementToBeClickable(dropDownList));
 			WebElement ul = DriverFactory.getDriver().findElement(dropDownList);
 			List<WebElement> options = ul.findElements(By.tagName("li"));
@@ -172,8 +177,8 @@ public class MKeywords {
 		return dropdownValues;
 	}
 	
-	public static boolean CompareTwoArrayOfStrings(ArrayList<String> reasonCodes, ArrayList<String> reasonCodesOnUI) {
-		return CollectionUtils.containsAll(reasonCodes, reasonCodesOnUI);
+	public static boolean compareTwoArrayOfStrings(List<String> reasonCodes, List<String> displayedList) {
+		return CollectionUtils.containsAll(reasonCodes, displayedList);
 	}
 	
 	/**
@@ -204,7 +209,7 @@ public class MKeywords {
 				}
 				WebElement option = list.get(0);
 				
-				if (SeKeywords.isFirefoxBrowser || SeKeywords.isIeBrowser) {
+				if (SeKeywords.IS_FIREFOX_BROWSER || SeKeywords.IS_IE_BROWSER) {
 					JavaScriptKeywords.scrollElementIntoView(option, true);
 				} else {
 					Actions action = new Actions(DriverFactory.getDriver());
@@ -222,7 +227,7 @@ public class MKeywords {
 					LoggingManager.getReportLogger().log(Status.INFO,
 							"\"" + "TimeOut while waiting invisibility of drop down after click. " + "\""
 									+ LoggingManager.getInstance().getCurrentElementPath() + "\""
-									+ " not found. " + "\"");
+									+ NOT_FOUND + "\"");
 				}
 				// This if is added to cater the fact that some drop down values do not get
 				// selected with JS click but require a normal click
@@ -240,7 +245,7 @@ public class MKeywords {
 			LoggingManager.getConsoleLogger().error("No Dropdown Element Found" + e);
 			throw(e);
 		} catch (TimeoutException e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "TimeOut. " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"" + " not found. " + "\"");
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "TimeOut. " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"" + NOT_FOUND + "\"");
 			LoggingManager.getConsoleLogger().error("Timeout. Element not found." + e);
 			throw(e);
 		} catch (Exception e) {
@@ -281,7 +286,7 @@ public class MKeywords {
 			LoggingManager.getConsoleLogger().error("Search Element not found" + e);
 			throw(e);
 		} catch (TimeoutException e) {
-			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "TimeOut. " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"" + " not found. " + "\"");
+			LoggingManager.getReportLogger().log(Status.FAIL, "\"" + "TimeOut. " + "\"" + LoggingManager.getInstance().getCurrentElementPath() + "\"" + NOT_FOUND + "\"");
 			LoggingManager.getConsoleLogger().error("Timeout. Element not found." + e);
 			throw(e);
 		} catch (Exception e) {

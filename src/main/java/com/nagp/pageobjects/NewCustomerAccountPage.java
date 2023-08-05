@@ -1,4 +1,4 @@
-package com.nagp.pageObjects;
+package com.nagp.pageobjects;
 
 import org.openqa.selenium.By;
 
@@ -6,6 +6,10 @@ import com.nagp.keywords.MKeywords;
 import com.nagp.keywords.SeKeywords;
 
 public class NewCustomerAccountPage {
+	
+	private NewCustomerAccountPage() {
+		throw new UnsupportedOperationException("Cannot instantiate utility class");
+	}
 	
 	private static String pageName = "NewCustomerAccount";
 	public static final String CREATE_NEW_CUSTOMER_TITLE = "Create New Customer Account";

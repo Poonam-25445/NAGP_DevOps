@@ -1,4 +1,4 @@
-package com.nagp.pageObjects;
+package com.nagp.pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -9,6 +9,10 @@ import com.nagp.keywords.MKeywords;
 import com.nagp.keywords.SeKeywords;
 
 public class HomePage {
+	
+	private HomePage() {
+		throw new UnsupportedOperationException("Cannot instantiate utility class");
+	}
 	
 	private static String pageName = "Home";
 
@@ -30,7 +34,7 @@ public class HomePage {
 		By element = MKeywords.findElement(pageName, "SearchTextBox");
 		By elementlist = MKeywords.findElement(pageName, "SearchList");
 		SeKeywords.waitForElementVisibility(element, 10);
-		if (SeKeywords.isIeBrowser) {
+		if (SeKeywords.IS_IE_BROWSER) {
 			((JavascriptExecutor) DriverFactory.getDriver()).executeScript(String.format("document.getElementById('search').value='%s';", input));
 			DriverFactory.getDriver().findElement(element).sendKeys(Keys.SPACE);
 		} else {

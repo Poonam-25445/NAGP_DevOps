@@ -2,6 +2,10 @@ package com.nagp.constants;
 
 public class FunctionalGroups {
 	
+	private FunctionalGroups() {
+		throw new UnsupportedOperationException("Cannot instantiate utility class");
+	}
+	
 	public static final String LOGIN = "Login";
 	public static final String ADDRESS = "Address";
 	public static final String CUSTOMER_ACCOUNT = "NewCustomer";

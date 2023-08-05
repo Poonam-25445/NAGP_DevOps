@@ -79,12 +79,14 @@ public class Config {
 	
 	public static String CurrentTestResultPrefix;
 	
+	public static final String USER_DIR = "user.dir";
+	
 	/**
 	 * Sole constructor. (For invocation by subclass 
 	 * constructors, typically implicit.)
 	 */
-	public Config() {
-		
+	private Config() {
+		throw new UnsupportedOperationException("Cannot instantiate utility class");
 	}
 
 	/**
@@ -92,7 +94,7 @@ public class Config {
 	 */
 	public static void initConstants() {
 
-		String path = System.getProperty("user.dir") + "\\Config\\app.properties";
+		String path = System.getProperty(USER_DIR) + "\\Config\\app.properties";
 		Properties prop = new Properties();
 
 		try {
@@ -100,39 +102,39 @@ public class Config {
 			SimpleDateFormat sdfDate = new SimpleDateFormat("yyyyMMdd_HHmmssSSS_z");
 			Date now = new Date();
 			String dateTime = sdfDate.format(now);
-			if (ofileInputStream != null) {
+			//if (ofileInputStream != null) {
 				prop.load(ofileInputStream);
 				CurrentTestResultPrefix = prop.getProperty("CurrentTestResultPrefix");
 				ApplicationURL = prop.getProperty("ApplicationURL");
-				log4jPath = System.getProperty("user.dir") + prop.getProperty("log4jPath").replace("\\", File.separator);
-				dataInputFile = System.getProperty("user.dir") + prop.getProperty("CSVFile").replace("\\", File.separator);
-				locatorsFile = System.getProperty("user.dir") + prop.getProperty("ORXmlFile").replace("\\", File.separator);
-				ExtentReportsPath = System.getProperty("user.dir") + prop.getProperty("ExtentReportsPath").replace("\\", File.separator).replace("${timestamp}", dateTime).replace("${CurrentTestResultPrefix}", CurrentTestResultPrefix);
+				log4jPath = System.getProperty(USER_DIR) + prop.getProperty("log4jPath").replace("\\", File.separator);
+				dataInputFile = System.getProperty(USER_DIR) + prop.getProperty("CSVFile").replace("\\", File.separator);
+				locatorsFile = System.getProperty(USER_DIR) + prop.getProperty("ORXmlFile").replace("\\", File.separator);
+				ExtentReportsPath = System.getProperty(USER_DIR) + prop.getProperty("ExtentReportsPath").replace("\\", File.separator).replace("${timestamp}", dateTime).replace("${CurrentTestResultPrefix}", CurrentTestResultPrefix);
 				ReportTitle = prop.getProperty("ReportTitle");
 				ReportName = prop.getProperty("ReportName");
-				TestReportFolder =System.getProperty("user.dir") + prop.getProperty("TestReports").replace("\\", File.separator);
-				ScreenShotsPath = System.getProperty("user.dir") + prop.getProperty("ScreenShotsPath").replace("\\", File.separator).replace("${timestamp}", dateTime).replace("${CurrentTestResultPrefix}", CurrentTestResultPrefix);
-				AppConfig = System.getProperty("user.dir") + prop.getProperty("AppConfig").replace("\\", File.separator);
-				ZipPath = System.getProperty("user.dir") + prop.getProperty("ZipPath").replace("\\", File.separator);
-				testData = System.getProperty("user.dir") + prop.getProperty("TestDataPath").replace("\\", File.separator);
+				TestReportFolder =System.getProperty(USER_DIR) + prop.getProperty("TestReports").replace("\\", File.separator);
+				ScreenShotsPath = System.getProperty(USER_DIR) + prop.getProperty("ScreenShotsPath").replace("\\", File.separator).replace("${timestamp}", dateTime).replace("${CurrentTestResultPrefix}", CurrentTestResultPrefix);
+				AppConfig = System.getProperty(USER_DIR) + prop.getProperty("AppConfig").replace("\\", File.separator);
+				ZipPath = System.getProperty(USER_DIR) + prop.getProperty("ZipPath").replace("\\", File.separator);
+				testData = System.getProperty(USER_DIR) + prop.getProperty("TestDataPath").replace("\\", File.separator);
 				screenshotOnFailure = prop.getProperty("ScreenshotOnFailure");
 				screenshotOnSkip = prop.getProperty("ScreenshotOnSkip");
 				screenshotOnPass = prop.getProperty("ScreenshotOnPass");
 				ExportFilePath = prop.getProperty("ExportFilePath").replace("\\", File.separator);
-				IEDriverPath = System.getProperty("user.dir") + prop.getProperty("IEDriverPath");
+				IEDriverPath = System.getProperty(USER_DIR) + prop.getProperty("IEDriverPath");
 				if(ApplicationURL == null) {
 					log.info("Environment " + Environment + " is not supported by test suite.");	
 				}
-			}
+			//}
 
 		} catch (IOException e) {
-			System.err.println("Cannot find the app.properties file at " + path);
+			//System.err.println("Cannot find the app.properties file at " + path);
 		} finally {
 			if (ofileInputStream != null) {
 				try {
 					ofileInputStream.close();
 				} catch (IOException e) {
-					System.err.println("Cannot close the app.properties file instance.");
+					//System.err.println("Cannot close the app.properties file instance.");
 				}
 			}
 		}

@@ -1,7 +1,8 @@
-package com.nagp.pageObjects;
+package com.nagp.pageobjects;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.openqa.selenium.By;
 
@@ -9,12 +10,15 @@ import com.nagp.keywords.MKeywords;
 import com.nagp.keywords.SeKeywords;
 
 public class CommonPage {
+	private CommonPage() {
+		throw new UnsupportedOperationException("Cannot instantiate utility class");
+	}
+	private static final String PAGENAME = "Common";	
 	
-	private static String pageName = "Common";	
 	public static final String MY_ACCOUNT = "My Account";
 	public static final String MY_WISH_LIST = "My Wish List";
 	public static final String SIGN_OUT = "Sign Out";
-	public static final ArrayList<String> LOGIN_USER_LINKS = new ArrayList<String>(
+	protected static final List<String> LOGIN_USER_LINKS = new ArrayList<>(
 			Arrays.asList(MY_ACCOUNT, MY_WISH_LIST, SIGN_OUT));
 	public static final String WELCOME_MESSAGE = "Welcome, Poonam Verma!";
 	
@@ -42,7 +46,7 @@ public class CommonPage {
 	 * @return true/false
 	 */
 	public static boolean verifyDefaultWelcomMessage() {
-		By defaultMessage = MKeywords.findElement(pageName, "DefaultLoginMsg");
+		By defaultMessage = MKeywords.findElement(PAGENAME, "DefaultLoginMsg");
 		SeKeywords.waitForElementVisibility(defaultMessage, 30);
 		return SeKeywords.isElementVisible(defaultMessage);
 	}
@@ -52,13 +56,13 @@ public class CommonPage {
 	 * 
 	 * @return true/false
 	 */
-	public static boolean verifyDropDownValuesInUserMenu(ArrayList<String> linkListForAccessDeniedPage) {
-		By userInfo = MKeywords.findElement(pageName, "UserInfo");
+	public static boolean verifyDropDownValuesInUserMenu(List<String> linkListForAccessDeniedPage) {
+		By userInfo = MKeywords.findElement(PAGENAME, "UserInfo");
 		SeKeywords.waitForElementToBeClickable(userInfo, 15);
-		ArrayList<String> displayedList = MKeywords.getDropdownValues(userInfo,
-				MKeywords.findElement(pageName, "WelcomeList"));
+		List<String> displayedList = MKeywords.getDropdownValues(userInfo,
+				MKeywords.findElement(PAGENAME, "WelcomeList"));
 		displayedList.remove(displayedList.size() - 1); // remove the copyright string
-		return MKeywords.CompareTwoArrayOfStrings(linkListForAccessDeniedPage, displayedList);
+		return MKeywords.compareTwoArrayOfStrings(linkListForAccessDeniedPage, displayedList);
 	}
 	
 	
@@ -66,7 +70,7 @@ public class CommonPage {
 	 * Click welcome list.
 	 */
 	public static void clickUserInfo(){
-		SeKeywords.click(MKeywords.findElement(pageName, "UserInfo"));
+		SeKeywords.click(MKeywords.findElement(PAGENAME, "UserInfo"));
 	}
 	
 	/**

@@ -28,8 +28,8 @@ import com.nagp.util.CommonUtil;
  */
 public class TestBase {
 	protected CommonUtil util;
-	public static String BROWSER_VALUE = null;
-	public static String PLATFORM_VALUE = null;
+	public static String browser_Value = null;
+	public static String platform_Value = null;
 	protected DriverOptions driverOptions;
 
 	static {
@@ -62,7 +62,7 @@ public class TestBase {
 	 * @throws Exception
 	 */
 	@BeforeSuite(alwaysRun = true)
-	protected void BeforeSuite() throws Exception {
+	protected void beforeSuite() throws Exception {
 		LoggingManager.getConsoleLogger().info("-----------------EXECUTION START----------------------");
 		LoggingManager.getConsoleLogger().info(" : TestBase - BeforeSuite called");
 		CommonUtil.isFolderExistAtPath(Config.TestReportFolder);
@@ -76,13 +76,13 @@ public class TestBase {
 	 * This method creates extent reporting parent class instance.
 	 */
 	@BeforeClass(alwaysRun = true)
-	protected void BeforeClass() {
+	protected void beforeClass() {
 		LoggingManager.getConsoleLogger().info(" : TesTBase - BeforeClass called -> " + getClass().getName());
 		LoggingManager.getInstance().createParentTestNode(getClass().getName());
 	}
 
 	@BeforeTest(alwaysRun = true)
-	protected void BeforeTest() {
+	protected void beforeTest() {
 		LoggingManager.getConsoleLogger().info(" : TesTBase - BeforeTest called");
 	}
 
@@ -101,11 +101,11 @@ public class TestBase {
 	 */
 	@BeforeMethod(alwaysRun = true)
 	@Parameters({ "webdriverHost", "webdriverPort", "browser", "platform" })
-	protected void BeforeMethod(String webdriverHost, int webdriverPort, String browser, String platform,
+	protected void beforeMethod(String webdriverHost, int webdriverPort, String browser, String platform,
 			Method method) {
 		try {
-			BROWSER_VALUE = browser;
-			PLATFORM_VALUE = platform;
+			browser_Value = browser;
+			platform_Value = platform;
 			LoggingManager.getConsoleLogger().info(" : TestBase - BeforeMethod called : " + method.getName());
 			LoggingManager.getConsoleLogger().info(" : Browser called -> " + browser);
 			setDriverOptions(webdriverHost, webdriverPort, browser, platform);
@@ -141,7 +141,7 @@ public class TestBase {
 	 * @param result gives user the result of test case.
 	 */
 	@AfterMethod(alwaysRun = true)
-	protected void AfterMethod(ITestResult result) {
+	protected void afterMethod(ITestResult result) {
 		LoggingManager.getConsoleLogger().info(" : TestBase - AfterMethod called -> " + result.getName());
 
 		/* Closes the browser instance */
@@ -152,13 +152,13 @@ public class TestBase {
 	 * Clear the extent report parent instance after test class is executed
 	 */
 	@AfterClass(alwaysRun = true)
-	protected void AfterClass() {
+	protected void afterClass() {
 		LoggingManager.getConsoleLogger().info(" : TestBase - AfterClass called -> " + getClass().getName());
 		LoggingManager.getInstance().clearParentTestNode();
 	}
 
 	@AfterTest(alwaysRun = true)
-	protected void AfterTest() {
+	protected void afterTest() {
 		LoggingManager.getConsoleLogger().info(" : TestBase - AfterTest called");
 	}
 
