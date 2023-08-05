@@ -37,13 +37,12 @@ public class ReadFileUtil {
 	public static final FileOutputStream FILEOUT = null;
 	public static final HyperlinkType FILE = null;
 
-	private static Logger log = Logger.getLogger(ReadFileUtil.class);
+	public static final Logger LOG = Logger.getLogger(ReadFileUtil.class);
 
 	/**
 	 * Instantiates a new data source operations.
 	 */
 	private ReadFileUtil() {
-		log.info(" : FileOperation Constructor Called");
 	}
 	
 
@@ -136,15 +135,15 @@ public class ReadFileUtil {
 				}
 			}
 		} catch (FileNotFoundException ex) {
-			log.error(ex.getMessage());
+			LOG.error(ex.getMessage());
 		} catch (IOException ex) {
-			log.error(ex.getMessage());
+			LOG.error(ex.getMessage());
 		} finally {
 			if (br != null) {
 				try {
 					br.close();
 				} catch (IOException ex) {
-					log.error(ex.getMessage());
+					LOG.error(ex.getMessage());
 				}
 			}
 		}
