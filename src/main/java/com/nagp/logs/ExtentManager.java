@@ -1,5 +1,10 @@
 package com.nagp.logs;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.ChartLocation;
@@ -33,8 +38,15 @@ public class ExtentManager {
      *
      * @param fileName file name.
      * @return ExtentReports    instance of Extent Report.
+     * @throws IOException 
      */
     private static ExtentReports createInstance(String fileName) {
+    	File f = new File(Config.ExtentReportsPath);
+		/*
+		 * try { Files.createDirectories(Paths.get(Config.ScreenShotsPath));
+		 * f.createNewFile(); } catch (IOException e) { e.printStackTrace(); }
+		 */
+		
         ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(fileName);
         htmlReporter.config().setTestViewChartLocation(ChartLocation.BOTTOM);
         htmlReporter.config().setChartVisibilityOnOpen(true);

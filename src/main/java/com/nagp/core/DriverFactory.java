@@ -183,7 +183,7 @@ public class DriverFactory {
 			capabilities.setBrowserName(CHROME);
 		} else if (browser.equalsIgnoreCase(INTERNET_EXPLORER)) {
 			capabilities.setBrowserName(INTERNET_EXPLORER);
-		} 
+		}
 		return capabilities;
 	}
 

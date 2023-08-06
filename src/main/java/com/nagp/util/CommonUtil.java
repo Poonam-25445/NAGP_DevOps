@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.text.DecimalFormat;
@@ -164,6 +165,22 @@ public class CommonUtil {
 	}
 
 	/**
+	 * Zip the specified folder.
+	 *
+	 * @param Destloc	path to store the zipped file.
+	 * @param sourceLoc path of folder to be zipped.
+	 */
+	public static void zipfolder(String Destloc, String sourceLoc) {
+		try {
+			ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(Destloc + ".zip"));
+			zipDir(sourceLoc, zos);
+			zos.close();
+		} catch (Exception ex) {
+			LoggingManager.getConsoleLogger().error(ex.getMessage());
+		}
+	}
+	
+	/**
 	 * Zip the specified directory.
 	 *
 	 * @param dir2zip	path of folder to be zipped.
@@ -221,6 +238,8 @@ public class CommonUtil {
 		LoggingManager.getConsoleLogger().info(" : sshotSetRelativePath Method Called");
 		try {
 			File f = new File(Config.ExtentReportsPath);
+			Files.createDirectories(Paths.get(Config.ScreenShotsPath));
+			f.createNewFile();
 			ArrayList<String> lines = new ArrayList<>();
 			String line;
 			fr = new FileReader(f);
@@ -241,8 +260,10 @@ public class CommonUtil {
 			fw.close();
 			out.close();
 		} catch (FileNotFoundException ex) {
+			ex.printStackTrace();
 			LoggingManager.getConsoleLogger().error(ex.getMessage());
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			LoggingManager.getConsoleLogger().error(ex.getMessage());
 		}
 	}
