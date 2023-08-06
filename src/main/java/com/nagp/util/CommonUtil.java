@@ -260,10 +260,8 @@ public class CommonUtil {
 			fw.close();
 			out.close();
 		} catch (FileNotFoundException ex) {
-			ex.printStackTrace();
 			LoggingManager.getConsoleLogger().error(ex.getMessage());
 		} catch (Exception ex) {
-			ex.printStackTrace();
 			LoggingManager.getConsoleLogger().error(ex.getMessage());
 		}
 	}
